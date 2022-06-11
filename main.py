@@ -2,11 +2,12 @@ from PIL import Image
 
 IMAGE_TARGET = "target.jpg"
 
-def resize_image(file_name):
+def resize_image(file_name: str) -> None:
     image = Image.open(file_name)
-    image.resize((100, 50)).save(IMAGE_TARGET)
+    LENGTH, WIDTH = (100, 50)
+    image.resize((LENGTH, WIDTH)).save(IMAGE_TARGET)
 
-def get_brightness(R, G, B):
+def get_brightness(R: int, G: int, B: int) -> float:
     return 0.2126*R + 0.7152*G + 0.0722*B
 
 def brightness_chr(brightness: float) -> str:
@@ -17,7 +18,7 @@ def print_pixel(RGB:tuple) -> None:
     BRIGHTNESS = get_brightness(*RGB)
     print(brightness_chr(BRIGHTNESS), end="")
 
-def print_image(file_name):
+def print_image(file_name: str) -> None:
     resize_image(file_name)
 
     image = Image.open(IMAGE_TARGET)
@@ -29,7 +30,7 @@ def print_image(file_name):
         print()
 
 
-def main():
+def main() -> None:
     print_image("sample.jpg")
 
 if __name__ == "__main__":
